@@ -30,7 +30,22 @@ input("Press Enter")
 FLAG = False
 
 """
-In this case:
+TO SEE HOW MANY THREADS CREATED UNDER ONE PROCESS:
+--------------------------------------------------
+
+Using Task Manager =>
+    Windows Task Manager allows you to see thread activity for each process.
+
+    Steps:
+    1) Open Task Manager (Ctrl + Shift + Esc).
+    2) Go to the Details tab.
+    3) Right-click on the column headers and select Select Columns.
+    4) Check Threads and click OK.
+    5) Look for your Python process (e.g., python.exe) and check the Threads column to see the total number of active threads in that process.
+    This shows the total thread count but does not give details about individual threads.
+
+In this python script:
+----------------------
 
 You explicitly create 3 threads using the threading module.
 Task Manager shows 7 threads because:
