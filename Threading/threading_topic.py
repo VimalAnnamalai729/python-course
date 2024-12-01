@@ -1,33 +1,29 @@
 import threading
 import time
 
-FLAG = True
 
-
-def test_func():
-    count = 0
-    while FLAG:
+def test_func(t_name):
+    for i in range(1, 11):
+        print(f'{t_name} :: HEY PYTHONISTS!!! => {i}')
         time.sleep(1)
-        count += 1
-        print(count)
-
 
 '''Explain with normal behaviour'''
-# test_func()
+# test_func('NO THREAD')
 
 '''Explain with single thread behaviour'''
-threading.Thread(target=test_func, daemon=False).start()
+# threading.Thread(target=test_func, daemon=False, args=(f'Thread-1', )).start()
 
 '''Explain with multiple thread behaviour'''
-# threads = []
-# for i in range(4):  # Download 3 files
-#     thread = threading.Thread(target=test_func)
-#     threads.append(thread)
-#     thread.start()
+threads = []
+for i in range(1, 3):
+    thread = threading.Thread(target=test_func, daemon=True, args=(f'Thread-{i}', ))
+    threads.append(thread)
+    thread.start()
 
+'''Thread.join() - tell the python script to wait until the threads are finished'''
+for t in threads:
+    t.join()
 
-input("Press Enter")
-FLAG = False
 
 """
 TO SEE HOW MANY THREADS CREATED UNDER ONE PROCESS:
@@ -56,3 +52,27 @@ Task Manager shows 7 threads because:
             - OS-level threads supporting Python's runtime.
 """
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Reference : https://www.youtube.com/watch?v=A_Z1lgZLSNc
+# Daemon Thread: https://www.youtube.com/watch?v=llBPmECcLD4
