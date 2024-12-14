@@ -2,29 +2,49 @@ import threading
 import time
 
 
-def test_func(t_name):
-    for i in range(1, 11):
-        print(f'{t_name} :: HEY PYTHONISTS!!! => {i}')
+def test_func(name):
+    for i in range(1, 10):
+        print(f'{name} :: HEY PYTHONISTS!!! => {i}')
         time.sleep(1)
 
 '''Explain with normal behaviour'''
-# test_func('NO THREAD')
+# threading.Thread(target=test_func, args=(f'Thread-1', ), daemon=True).start()
+
+t = threading.Thread(target=test_func, args=(f'Thread-1', ), daemon=True)
+t.start()
+t.join()
+# time.sleep(1)
+print('Order Cancelled')
+
+
+
+
+
+
+
+
+
+
+# test_func('NORMLA FUNC 2')
 
 '''Explain with single thread behaviour'''
-# threading.Thread(target=test_func, daemon=False, args=(f'Thread-1', )).start()
+# threading.Thread(target=test_func, args=(f'Thread-1', ), daemon=False).start()
+# threading.Thread(target=test_func, args=(f'Thread-2', )).start()
+
+
 
 '''Explain with multiple thread behaviour'''
-threads = []
-for i in range(1, 3):
-    thread = threading.Thread(target=test_func, daemon=True, args=(f'Thread-{i}', ))
-    threads.append(thread)
-    thread.start()
+# threads = []
+# for i in range(1, 4):
+#     thread = threading.Thread(target=test_func, daemon=True, args=(f'Thread-{i}', ))
+#     threads.append(thread)
+#     thread.start()
 
-'''Thread.join() - tell the python script to wait until the threads are finished'''
-for t in threads:
-    t.join()
+# '''Thread.join() - tell the python script to wait until the threads are finished'''
+# for t in threads:
+#     t.join()
 
-
+# print('Program Ends')
 """
 TO SEE HOW MANY THREADS CREATED UNDER ONE PROCESS:
 --------------------------------------------------

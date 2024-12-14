@@ -13,11 +13,13 @@ def producer():
 
 def consumer():
     while True:
-        task = task_queue.get()  # Block until an item is available
-        if task == "STOP":
-            break
-        print(f"Consumer: Processing {task}")
-        time.sleep(2)  # Simulate processing time
+        task = task_queue.get()
+        if task:
+            print(task) # Block until an item is available
+            if task == "STOP":
+                break
+            print(f"Consumer: Processing {task}")
+            time.sleep(2)  # Simulate processing time
 
 producer_thread = threading.Thread(target=producer)
 consumer_thread = threading.Thread(target=consumer)
